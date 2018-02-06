@@ -1,0 +1,43 @@
+﻿@model MedInfo_OOSD.Models.NewDoctorViewModel
+
+@{
+    ViewBag.Title = "DoctorForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+
+
+@using (Html.BeginForm("SaveDoctor","Doctor"))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name,new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ChemberAddress)
+        @Html.TextBoxFor(model => model.ChemberAddress, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ChemberAddress)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ChemberAddress)
+        @Html.DropDownListFor(model => model.ChemberAddress, new SelectList(Model.Specialities, "Id", "Name"), new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.ChemberAddress)
+    </div>
+
+    <button class="btn btn-primary">Save</button>
+
+}
+
