@@ -66,3 +66,6 @@ C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Mig
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AddingSpecialityToDoctors.resources
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.SeedingSpeciality.resources
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AddingContraintToDoctor.resources
+C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\bin\AutoMapper.dll
+C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\bin\AutoMapper.xml
+C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AddingUserIdToDoctors.resources

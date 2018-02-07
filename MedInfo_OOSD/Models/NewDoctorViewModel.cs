@@ -25,6 +25,7 @@ namespace MedInfo_OOSD.Models
         [StringLength(100)]
         public string AvailableDays { get; set; }
 
+        [Display(Name = "Speciality")]
         public short SpecialityId { get; set; }
 
 

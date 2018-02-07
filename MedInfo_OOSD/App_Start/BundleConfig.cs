@@ -9,7 +9,10 @@ namespace MedInfo_OOSD
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                "~/Scripts/datatables/jquery.dataTables.js",
+                "~/Scripts/bootbox.js",
+                "~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -21,11 +24,14 @@ namespace MedInfo_OOSD
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/datatables/dataTables.bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-flatty.css",
-                      "~/Content/site.css"));
+                      "~/Content/Site.css", 
+                "~/Content/datatables/css/datatables.bootstrap.css",
+            "~/Content/toastr.css"));
         }
     }
 }

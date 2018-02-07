@@ -26,18 +26,29 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.ChemberAddress)
-        @Html.TextBoxFor(model => model.ChemberAddress, new { @class = "form-control" })
+        @Html.TextAreaFor(model => model.ChemberAddress, new { @class = "form-control" })
         @Html.ValidationMessageFor(model => model.ChemberAddress)
     </div>
-
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ChemberAddress)
-        @Html.DropDownListFor(model => model.ChemberAddress, new SelectList(Model.Specialities, "Id", "Name"), new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.ChemberAddress)
+        @Html.LabelFor(model => model.AvailableDays)
+        @Html.TextBoxFor(model => model.AvailableDays, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.AvailableDays)
     </div>
 
+    <div class="form-group">
+        @Html.LabelFor(model => model.SpecialityId)
+        @Html.DropDownListFor(model => model.SpecialityId, new SelectList(Model.Specialities, "Id", "Name"), new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SpecialityId)
+    </div>
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.AntiForgeryToken()
     <button class="btn btn-primary">Save</button>
 
 }
 
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

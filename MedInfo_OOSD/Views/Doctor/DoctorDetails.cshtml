@@ -1,0 +1,39 @@
+﻿@model MedInfo_OOSD.Core.Domain.Doctor
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>Name: </th>
+        <th>@Model.Name</th>
+    </tr>
+    
+    <tr>
+        <th>Speciality: </th>
+        <th>@Model.Speciality.Name</th>
+    </tr>
+    
+    
+    <tr>
+        <th>Available Days: </th>
+        <th>@Model.AvailableDays</th>
+    </tr>
+    
+    
+    <tr>
+        <th>Chember Address: </th>
+        <th>@Model.ChemberAddress</th>
+    </tr>
+    
+    <tr>
+        <th>Email: </th>
+        <th>@Model.Email</th>
+    </tr>
+    
+
+</table>

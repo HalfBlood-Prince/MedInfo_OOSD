@@ -18,5 +18,9 @@ namespace MedInfo_OOSD.Core.Domain
         public Speciality Speciality { get; set; }
 
         public short SpecialityId { get; set; }
+
+        public ApplicationUser ApplicationUser { get; set; }
+
+        public string ApplicationUserId { get; set; }
     }
 }

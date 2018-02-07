@@ -40,6 +40,10 @@ namespace MedInfo_OOSD.Persistence.EntityConfiguration
                 .HasForeignKey(d => d.SpecialityId)
                 .WillCascadeOnDelete(false);
 
+            HasRequired(d => d.ApplicationUser)
+                .WithMany(u => u.Doctors)
+                .HasForeignKey(d => d.ApplicationUserId);
+
             #endregion
         }
     }
