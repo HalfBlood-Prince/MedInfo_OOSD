@@ -9,5 +9,7 @@ namespace MedInfo_OOSD.Core.Domain
         public string Name { get; set; }
 
         public IList<Doctor> Doctors { get; set; }
+
+        public IList<Hospital> Hospitals { get; set; }
     }
 }

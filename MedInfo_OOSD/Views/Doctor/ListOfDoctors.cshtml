@@ -18,11 +18,13 @@
     </thead>
 
     <tbody>
+
     @foreach (var doctor in Model)
     {
         <tr>
-            <td>@Html.ActionLink(doctor.Name,"Details","Doctor",new {id = doctor.Id}, new {@class = "btn btn-link"})</td>
-            <td><div class="btn">@doctor.Speciality.Name</div></td>
+            <td>@Html.ActionLink(doctor.Name, "DoctorDetails", "Doctor", new {id = doctor.Id}, new {@class = "btn btn-link"})</td>
+            <td>
+                <div class="btn">@doctor.Speciality.Name</div></td>
             <td>
                 @Html.ActionLink("Edit", "EditDoctor", "Doctor", new {id = doctor.Id}, new {@class = "btn btn-primary"}) ||
                 <button class="btn btn-primary js-delete" data-doctor-id="@doctor.Id">Delete</button>

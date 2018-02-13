@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MedInfo_OOSD.Core.Domain.Hospital>
+
+@{
+    ViewBag.Title = "List Of Hospitals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List Of Hospitals</h2>
+
+@Html.ActionLink("New Hospital", "NewHospital", "Hospital", null, new { @class = "btn btn-primary" }) <br /> <br />
+
+<table class="table table-hover table-bordered" id="hospitals">
+
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var hospital in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(hospital.Name, "HospitalDetails", "Hospital", new { id = hospital.Id }, new { @class = "btn btn-link" })</td>
+            <td>@hospital.HospitalAddress</td>
+            <td>
+                @Html.ActionLink("Edit", "EditHospital", "Hospital", new { id = @hospital.Id }, new { @class = "btn btn-primary" }) |
+                <button class="btn btn-primary js-delete" data-hospital-id="@hospital.Id">Delete</button>
+            </td>
+        </tr>
+
+    }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+
+           var table = $("#hospitals").DataTable();
+
+            $("#hospitals").on("click", ".js-delete", function () {
+
+                var button = $(this);
+
+                bootbox.confirm("Are Sure To Delete This", function (result) {
+
+                    if (result) {
+
+                        $.ajax({
+
+                            url: "/api/hospitals/" + button.attr("data-hospital-id"),
+                            method: "DELETE",
+                            success: function () {
+
+                                table.row(button.parents("tr")).remove().draw();
+                                toastr.success("Record Deleted");
+                            }
+                        });
+                    }
+
+                });
+            });
+        });
+    </script>
+}

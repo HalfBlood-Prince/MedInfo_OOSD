@@ -28,6 +28,7 @@ namespace MedInfo_OOSD.Models
         [Display(Name = "Speciality")]
         public short SpecialityId { get; set; }
 
+        public Speciality Speciality { get; set; }
 
         public IEnumerable<Speciality> Specialities { get; set; }
 

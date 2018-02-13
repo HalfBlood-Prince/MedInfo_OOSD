@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MedInfo_OOSD.Core.Domain.Hospital>
+
+@{
+    ViewBag.Title = "List Of Hospitals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List Of Hospitals</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    @Html.ActionLink("New Hospital", "NewHospital", "Hospital", null, new { @class = "btn btn-primary" }) <br /> <br />
+}
+
+<table class="table table-hover table-bordered" id="hospitals">
+
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var hospital in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(hospital.Name, "HospitalDetails", "Hospital", new { id = hospital.Id }, new { @class = "btn btn-link" })</td>
+            <td>@hospital.HospitalAddress</td>
+        </tr>
+
+    }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+
+            $("#hospitals").DataTable();
+        });
+    </script>
+}

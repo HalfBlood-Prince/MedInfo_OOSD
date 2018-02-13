@@ -25,12 +25,14 @@ namespace MedInfo_OOSD.Controllers
             base.Dispose(disposing);
         }
 
-        // GET: Doctor
+        [AllowAnonymous]
         public ActionResult ListOfDoctors()
         {
             var list = _context.Doctors.Include(d => d.Speciality).ToList();
 
-            return View(list);
+            var view = User.IsInRole(Roles.SuperAdmin) ? "ListofDoctors" : "ListofDoctorsReadOnly";
+
+            return View(view,list);
         }
 
         public ActionResult NewDoctor()
@@ -71,7 +73,7 @@ namespace MedInfo_OOSD.Controllers
 
 
             _context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ListOfDoctors", "Doctor");
         }
 
 
@@ -89,11 +91,15 @@ namespace MedInfo_OOSD.Controllers
             return View("DoctorForm",viewModel);
         }
 
-        public ActionResult Details(Guid id)
+        [AllowAnonymous]
+        public ActionResult DoctorDetails(Guid id)
         {
             var doctor = _context.Doctors.Include(d => d.Speciality).SingleOrDefault(d => d.Id == id);
 
-            return View("DoctorDetails", doctor);
+            return View("DoctorDetails", Mapper.Map<Doctor,NewDoctorViewModel>(doctor));
         }
+
     }
+
+
 }

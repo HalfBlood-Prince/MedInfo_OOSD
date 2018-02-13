@@ -175,13 +175,19 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\DoctorsController.cs" />
+    <Compile Include="Controllers\Api\HospitalsController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HospitalController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Core\Domain\Comment.cs" />
     <Compile Include="Core\Domain\Doctor.cs" />
+    <Compile Include="Core\Domain\Hospital.cs" />
     <Compile Include="Core\Domain\Interface\IEntity.cs" />
     <Compile Include="Core\Domain\Speciality.cs" />
     <Compile Include="Dtos\DoctorDto.cs" />
+    <Compile Include="Dtos\HospitalDto.cs" />
+    <Compile Include="Dtos\SpecialityDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,13 +219,56 @@
     <Compile Include="Migrations\201802071811382_AddingUserIdToDoctors.Designer.cs">
       <DependentUpon>201802071811382_AddingUserIdToDoctors.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802091359555_SeedingUsers.cs" />
+    <Compile Include="Migrations\201802091359555_SeedingUsers.Designer.cs">
+      <DependentUpon>201802091359555_SeedingUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802111514528_AddingHospitalModel.cs" />
+    <Compile Include="Migrations\201802111514528_AddingHospitalModel.Designer.cs">
+      <DependentUpon>201802111514528_AddingHospitalModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802111613167_AddingContraintsToHospital.cs" />
+    <Compile Include="Migrations\201802111613167_AddingContraintsToHospital.Designer.cs">
+      <DependentUpon>201802111613167_AddingContraintsToHospital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802111629198_RemovingIdentityFromHospital.cs" />
+    <Compile Include="Migrations\201802111629198_RemovingIdentityFromHospital.Designer.cs">
+      <DependentUpon>201802111629198_RemovingIdentityFromHospital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802111635594_AddingIdentityToHospital.cs" />
+    <Compile Include="Migrations\201802111635594_AddingIdentityToHospital.Designer.cs">
+      <DependentUpon>201802111635594_AddingIdentityToHospital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802111739434_RemovingIdentityFromHospital1.cs" />
+    <Compile Include="Migrations\201802111739434_RemovingIdentityFromHospital1.Designer.cs">
+      <DependentUpon>201802111739434_RemovingIdentityFromHospital1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802111742216_AddingIdentityAgainToHospital.cs" />
+    <Compile Include="Migrations\201802111742216_AddingIdentityAgainToHospital.Designer.cs">
+      <DependentUpon>201802111742216_AddingIdentityAgainToHospital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802111746136_AgainAddingIdentityToHospital.cs" />
+    <Compile Include="Migrations\201802111746136_AgainAddingIdentityToHospital.Designer.cs">
+      <DependentUpon>201802111746136_AgainAddingIdentityToHospital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802111802345_FixingIdentityToHospital.cs" />
+    <Compile Include="Migrations\201802111802345_FixingIdentityToHospital.Designer.cs">
+      <DependentUpon>201802111802345_FixingIdentityToHospital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802111806304_ChangingColumnOrderInHospital.cs" />
+    <Compile Include="Migrations\201802111806304_ChangingColumnOrderInHospital.Designer.cs">
+      <DependentUpon>201802111806304_ChangingColumnOrderInHospital.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\NewDoctorViewModel.cs" />
+    <Compile Include="Models\NewHospitalViewModel.cs" />
+    <Compile Include="Models\Roles.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Core\Domain\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Persistence\EntityConfiguration\DoctorConfiguration.cs" />
+    <Compile Include="Persistence\EntityConfiguration\HospitalConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -465,6 +514,11 @@
     <Content Include="Views\Doctor\ListOfDoctors.cshtml" />
     <Content Include="Views\Doctor\DoctorDetails.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Doctor\ListOfDoctorsReadOnly.cshtml" />
+    <Content Include="Views\Hospital\HospitalForm.cshtml" />
+    <Content Include="Views\Hospital\ListOfHospitals.cshtml" />
+    <Content Include="Views\Hospital\HospitalDetails.cshtml" />
+    <Content Include="Views\Hospital\ListOfHospitalsReadonly.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -497,6 +551,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802071811382_AddingUserIdToDoctors.resx">
       <DependentUpon>201802071811382_AddingUserIdToDoctors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802091359555_SeedingUsers.resx">
+      <DependentUpon>201802091359555_SeedingUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802111514528_AddingHospitalModel.resx">
+      <DependentUpon>201802111514528_AddingHospitalModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802111613167_AddingContraintsToHospital.resx">
+      <DependentUpon>201802111613167_AddingContraintsToHospital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802111629198_RemovingIdentityFromHospital.resx">
+      <DependentUpon>201802111629198_RemovingIdentityFromHospital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802111635594_AddingIdentityToHospital.resx">
+      <DependentUpon>201802111635594_AddingIdentityToHospital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802111739434_RemovingIdentityFromHospital1.resx">
+      <DependentUpon>201802111739434_RemovingIdentityFromHospital1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802111742216_AddingIdentityAgainToHospital.resx">
+      <DependentUpon>201802111742216_AddingIdentityAgainToHospital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802111746136_AgainAddingIdentityToHospital.resx">
+      <DependentUpon>201802111746136_AgainAddingIdentityToHospital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802111802345_FixingIdentityToHospital.resx">
+      <DependentUpon>201802111802345_FixingIdentityToHospital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802111806304_ChangingColumnOrderInHospital.resx">
+      <DependentUpon>201802111806304_ChangingColumnOrderInHospital.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

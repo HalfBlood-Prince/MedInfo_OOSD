@@ -1,5 +1,4 @@
 ﻿using System;
-using MedInfo_OOSD.Core.Domain;
 
 namespace MedInfo_OOSD.Dtos
 {

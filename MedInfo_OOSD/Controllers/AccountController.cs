@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MedInfo_OOSD.Models;
+using MedInfo_OOSD.Persistence;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MedInfo_OOSD.Controllers
 {
@@ -158,6 +160,15 @@ namespace MedInfo_OOSD.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
+                    //Temp Code
+
+                    //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    //var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                    //await roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
+
+                    //await UserManager.AddToRoleAsync(user.Id, "SuperAdmin");
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);

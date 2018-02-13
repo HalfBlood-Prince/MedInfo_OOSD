@@ -1,0 +1,51 @@
+﻿@model MedInfo_OOSD.Models.NewHospitalViewModel
+
+@{
+    ViewBag.Title = "Hospital";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Title</h2>
+
+@using (Html.BeginForm("SaveHospital","Hospital"))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name,new {@class="form-control"})
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email,new {@class="form-control"})
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HospitalAddress)
+        @Html.TextAreaFor(model => model.HospitalAddress,new {@class="form-control"})
+        @Html.ValidationMessageFor(model => model.HospitalAddress)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SpecialityId)
+        @Html.DropDownListFor(model => model.SpecialityId,new SelectList(Model.Specialities,"Id","Name"),"Select Type",new {@class="form-control"})
+        @Html.ValidationMessageFor(model => model.SpecialityId)
+    </div>
+
+
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(model => model.DoesHaveEmergencyWard) Does Hospital Have a Emergency Ward
+        </label>
+    </div>
+
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    <button class="btn btn-primary">Save</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

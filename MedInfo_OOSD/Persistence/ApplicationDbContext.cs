@@ -15,12 +15,14 @@ namespace MedInfo_OOSD.Persistence
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new DoctorConfiguration());
+            modelBuilder.Configurations.Add(new HospitalConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Speciality> Specialities { get; set; }
+        public DbSet<Hospital> Hospitals { get; set; }
 
         public static ApplicationDbContext Create()
         {
