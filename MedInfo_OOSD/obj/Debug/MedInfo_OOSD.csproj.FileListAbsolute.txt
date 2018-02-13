@@ -79,3 +79,5 @@ C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Mig
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AgainAddingIdentityToHospital.resources
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.FixingIdentityToHospital.resources
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.ChangingColumnOrderInHospital.resources
+C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AddingCommentModel.resources
+C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AddingCommentDateTime.resources

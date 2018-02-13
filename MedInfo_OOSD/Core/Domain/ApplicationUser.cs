@@ -13,6 +13,8 @@ namespace MedInfo_OOSD.Core.Domain
 
         public IList<Hospital> Hospitals { get; set; }
 
+        public IList<Comment> Comments { get; set; }
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

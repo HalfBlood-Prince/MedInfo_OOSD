@@ -87,7 +87,7 @@ namespace MedInfo_OOSD.Controllers
             };
 
             Mapper.Map(doctor, viewModel);
-
+            viewModel.Name = "Tanim";
             return View("DoctorForm",viewModel);
         }
 
@@ -96,9 +96,39 @@ namespace MedInfo_OOSD.Controllers
         {
             var doctor = _context.Doctors.Include(d => d.Speciality).SingleOrDefault(d => d.Id == id);
 
-            return View("DoctorDetails", Mapper.Map<Doctor,NewDoctorViewModel>(doctor));
+            var viewModel = Mapper.Map<Doctor, DoctorDetailsViewModel>(doctor);
+            viewModel.Comments = _context.Comments.Include(c => c.ApplicationUser).Where(c => c.RecordId == id).ToList();
+
+
+            return View("DoctorDetails", viewModel);
         }
 
+        public ActionResult AddDoctorComment(Guid id, DoctorDetailsViewModel model)
+        {
+            var doctor = _context.Doctors.Include(d => d.Speciality).SingleOrDefault(d => d.Id == id);
+
+            Mapper.Map(doctor, model);
+
+            if (!ModelState.IsValid)
+            {
+                return View("DoctorDetails", model);
+            }
+
+            if (model.Comment == null)
+                return View("DoctorDetails", model);
+
+            model.Comment.RecordId = id;
+            model.Comment.ApplicationUserId = User.Identity.GetUserId();
+            model.Comment.CommentDateTime = DateTime.Now;
+
+            _context.Comments.Add(Mapper.Map<CommentViewModel, Comment>(model.Comment));
+            _context.SaveChanges();
+
+            model.Comment.PostComment = "Tanim";
+            model.Comments = _context.Comments.Include(c => c.ApplicationUser).Where(c => c.RecordId == id);
+
+            return View("DoctorDetails", model);
+        }
     }
 
 

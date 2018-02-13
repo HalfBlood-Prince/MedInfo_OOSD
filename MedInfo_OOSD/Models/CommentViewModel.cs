@@ -1,16 +1,16 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace MedInfo_OOSD.Core.Domain
+namespace MedInfo_OOSD.Models
 {
-    public class Comment
+    public class CommentViewModel
     {
-        public int Id { get; set; }
-
         public Guid RecordId { get; set; }
 
+        [Required]
+        [StringLength(255)]
+        [Display(Name = "Comment")]
         public string PostComment { get; set; }
-
-        public ApplicationUser ApplicationUser { get; set; }
 
         public string ApplicationUserId { get; set; }
 

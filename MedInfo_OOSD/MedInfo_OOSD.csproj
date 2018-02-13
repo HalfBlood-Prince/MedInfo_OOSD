@@ -259,14 +259,25 @@
     <Compile Include="Migrations\201802111806304_ChangingColumnOrderInHospital.Designer.cs">
       <DependentUpon>201802111806304_ChangingColumnOrderInHospital.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802131820069_AddingCommentModel.cs" />
+    <Compile Include="Migrations\201802131820069_AddingCommentModel.Designer.cs">
+      <DependentUpon>201802131820069_AddingCommentModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802131826056_AddingCommentDateTime.cs" />
+    <Compile Include="Migrations\201802131826056_AddingCommentDateTime.Designer.cs">
+      <DependentUpon>201802131826056_AddingCommentDateTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CommentViewModel.cs" />
+    <Compile Include="Models\DoctorDetailsViewModel.cs" />
     <Compile Include="Models\NewDoctorViewModel.cs" />
     <Compile Include="Models\NewHospitalViewModel.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Core\Domain\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Persistence\EntityConfiguration\CommentConfiguration.cs" />
     <Compile Include="Persistence\EntityConfiguration\DoctorConfiguration.cs" />
     <Compile Include="Persistence\EntityConfiguration\HospitalConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -581,6 +592,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802111806304_ChangingColumnOrderInHospital.resx">
       <DependentUpon>201802111806304_ChangingColumnOrderInHospital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131820069_AddingCommentModel.resx">
+      <DependentUpon>201802131820069_AddingCommentModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802131826056_AddingCommentDateTime.resx">
+      <DependentUpon>201802131826056_AddingCommentDateTime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

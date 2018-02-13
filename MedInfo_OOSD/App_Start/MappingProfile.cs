@@ -15,6 +15,9 @@ namespace MedInfo_OOSD
 
             Mapper.CreateMap<NewHospitalViewModel,Hospital>()
                 .ForMember(m => m.Id, opt => opt.Ignore());
+
+            Mapper.CreateMap<CommentViewModel, Comment>()
+                .ForMember(m => m.Id, opt => opt.Ignore());
             
             //Domain to Model
 
@@ -23,7 +26,10 @@ namespace MedInfo_OOSD
             Mapper.CreateMap<Hospital, NewHospitalViewModel>();
             Mapper.CreateMap<Hospital, HospitalDto>();
             Mapper.CreateMap<Speciality, SpecialityDto>();
+            Mapper.CreateMap<Doctor, DoctorDetailsViewModel>();
+            
 
+           
             //Domain to Domain
 
             Mapper.CreateMap<Speciality, Speciality>();

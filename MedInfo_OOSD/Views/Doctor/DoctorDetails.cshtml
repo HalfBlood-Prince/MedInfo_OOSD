@@ -1,4 +1,4 @@
-﻿@model MedInfo_OOSD.Models.NewDoctorViewModel
+﻿@model MedInfo_OOSD.Models.DoctorDetailsViewModel
 
 @{
     ViewBag.Title = "DoctorDetails";
@@ -12,28 +12,56 @@
         <th>Name: </th>
         <th>@Model.Name</th>
     </tr>
-    
+
     <tr>
         <th>Speciality: </th>
         <th>@Model.Speciality.Name</th>
     </tr>
-    
-    
+
+
     <tr>
         <th>Available Days: </th>
         <th>@Model.AvailableDays</th>
     </tr>
-    
-    
+
+
     <tr>
         <th>Chember Address: </th>
         <th>@Model.ChemberAddress</th>
     </tr>
-    
+
     <tr>
         <th>Email: </th>
         <th>@Model.Email</th>
     </tr>
-    
+
 
 </table>
+
+@if (Model.Comments.Any())
+{
+    foreach (var comment in Model.Comments)
+    {
+        <div class="panel panel-default" style="width: 40%">
+            <div class="panel-heading">@comment.ApplicationUser.Email @comment.CommentDateTime.ToString("f")</div>
+            <div class="panel-body">@comment.PostComment</div>
+        </div>
+    }
+}
+
+
+
+@using (Html.BeginForm("AddDoctorComment", "Doctor", new { id = @Model.Id }))
+{
+    <div class="form-group">
+        @Html.TextAreaFor(model => model.Comment.PostComment,new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.Comment.PostComment)
+    </div>
+
+    <button class="btn btn-primary">Comment</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
