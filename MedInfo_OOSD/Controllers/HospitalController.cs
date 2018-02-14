@@ -102,6 +102,8 @@ namespace MedInfo_OOSD.Controllers
             return View("HospitalDetails", viewModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddHospitalComment(Guid id, HospitalDetailsViewModel model)
         {
             if (!ModelState.IsValid)

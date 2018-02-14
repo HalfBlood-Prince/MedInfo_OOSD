@@ -103,6 +103,8 @@ namespace MedInfo_OOSD.Controllers
             return View("DoctorDetails", viewModel);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddDoctorComment(Guid id, DoctorDetailsViewModel model)
         {
             var doctor = _context.Doctors.Include(d => d.Speciality).SingleOrDefault(d => d.Id == id);

@@ -58,7 +58,7 @@
 
         @Html.ValidationMessageFor(model => model.Comment.PostComment)
     </div>
-
+    @Html.AntiForgeryToken()
     <button class="btn btn-primary">Comment</button>
 }
 
