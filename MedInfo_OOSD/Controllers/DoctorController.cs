@@ -26,11 +26,20 @@ namespace MedInfo_OOSD.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult ListOfDoctors()
+        public ActionResult ListOfDoctors(bool? isAdded)
         {
-            var list = _context.Doctors.Include(d => d.Speciality).ToList();
+            var list = _context.Doctors.Include(d => d.Speciality).Where(d => d.IsApproved).ToList();
 
             var view = User.IsInRole(Roles.SuperAdmin) ? "ListofDoctors" : "ListofDoctorsReadOnly";
+
+            if (isAdded.HasValue && isAdded.Value)
+            {
+                ViewBag.Massage = "yes";
+            }
+            else
+            {
+                ViewBag.Massage = "no";
+            }
 
             return View(view,list);
         }
@@ -57,12 +66,18 @@ namespace MedInfo_OOSD.Controllers
                 return View("DoctorForm", model);
             }
 
+            var isAdded = false;
             if (model.Id == Guid.Empty)
             {
                 var doctor = Mapper.Map<NewDoctorViewModel, Doctor>(model);
+
+                if (User.IsInRole(Roles.SuperAdmin))
+                    doctor.IsApproved = true;
+
+
                 doctor.ApplicationUserId = User.Identity.GetUserId();
                 _context.Doctors.Add(doctor);
-
+                isAdded = true;
             }
             else
             {
@@ -73,10 +88,10 @@ namespace MedInfo_OOSD.Controllers
 
 
             _context.SaveChanges();
-            return RedirectToAction("ListOfDoctors", "Doctor");
+            return RedirectToAction("ListOfDoctors", "Doctor", new {isAdded});
         }
 
-
+        [Authorize(Roles = Roles.SuperAdmin)]
         public ActionResult EditDoctor(Guid id)
         {
             var doctor = _context.Doctors.SingleOrDefault(d => d.Id == id);

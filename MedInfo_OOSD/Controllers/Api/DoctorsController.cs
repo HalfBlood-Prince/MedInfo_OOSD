@@ -40,5 +40,19 @@ namespace MedInfo_OOSD.Controllers.Api
 
             return Ok(doctorDto);
         }
+
+        [HttpPut]
+        public IHttpActionResult Approve(Guid id)
+        {
+            var doctor = _context.Doctors.SingleOrDefault(d => d.Id == id);
+
+            if (doctor == null)
+                return NotFound();
+
+            doctor.IsApproved = true;
+            _context.SaveChanges();
+
+            return Ok(Mapper.Map<Doctor, DoctorDto>(doctor));
+        }
     }
 }

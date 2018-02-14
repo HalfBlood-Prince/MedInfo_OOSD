@@ -176,6 +176,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\DoctorsController.cs" />
     <Compile Include="Controllers\Api\HospitalsController.cs" />
+    <Compile Include="Controllers\ApproveController.cs" />
     <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HospitalController.cs" />
@@ -266,6 +267,10 @@
     <Compile Include="Migrations\201802131826056_AddingCommentDateTime.cs" />
     <Compile Include="Migrations\201802131826056_AddingCommentDateTime.Designer.cs">
       <DependentUpon>201802131826056_AddingCommentDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802141711021_AddingIsApprovedToDoctor.cs" />
+    <Compile Include="Migrations\201802141711021_AddingIsApprovedToDoctor.Designer.cs">
+      <DependentUpon>201802141711021_AddingIsApprovedToDoctor.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -531,6 +536,8 @@
     <Content Include="Views\Hospital\ListOfHospitals.cshtml" />
     <Content Include="Views\Hospital\HospitalDetails.cshtml" />
     <Content Include="Views\Hospital\ListOfHospitalsReadonly.cshtml" />
+    <Content Include="Views\Approve\ApproveList.cshtml" />
+    <Content Include="Views\Shared\_NavBarAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -599,6 +606,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802131826056_AddingCommentDateTime.resx">
       <DependentUpon>201802131826056_AddingCommentDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802141711021_AddingIsApprovedToDoctor.resx">
+      <DependentUpon>201802141711021_AddingIsApprovedToDoctor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

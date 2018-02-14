@@ -51,15 +51,20 @@
 
 
 
-@using (Html.BeginForm("AddDoctorComment", "Doctor", new { id = @Model.Id }))
+@if (User.Identity.IsAuthenticated)
 {
-    <div class="form-group">
-        @Html.TextAreaFor(model => model.Comment.PostComment,new {@class = "form-control"})
+    using (Html.BeginForm("AddDoctorComment", "Doctor", new { id = @Model.Id }))
+    {
+        <div class="form-group">
+            @Html.TextAreaFor(model => model.Comment.PostComment, new { @class = "form-control" })
 
-        @Html.ValidationMessageFor(model => model.Comment.PostComment)
-    </div>
-    @Html.AntiForgeryToken()
-    <button class="btn btn-primary">Comment</button>
+            @Html.ValidationMessageFor(model => model.Comment.PostComment)
+        </div>
+        @Html.AntiForgeryToken()
+        <button class="btn btn-primary">Comment</button>
+    }
+
+
 }
 
 @section scripts

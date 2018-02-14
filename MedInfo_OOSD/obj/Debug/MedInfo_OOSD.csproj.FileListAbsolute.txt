@@ -81,3 +81,4 @@ C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Mig
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.ChangingColumnOrderInHospital.resources
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AddingCommentModel.resources
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AddingCommentDateTime.resources
+C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AddingIsApprovedToDoctor.resources

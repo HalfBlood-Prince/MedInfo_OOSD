@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MedInfo_OOSD.Core.Domain.Interface.IEntity>
+
+@{
+    ViewBag.Title = "Approve List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Approve List</h2>
+
+<table class="table table-hover table-bordered" id="approve">
+    
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var entity in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(entity.Name,(string)ViewBag.Action,(string)ViewBag.Controller,new {id = entity.Id},new {@class = "btn btn-link"})</td>
+            <td>@entity.Email</td>
+            <td><button class="btn btn-primary js-approve" data-id="@entity.Id" data-api="@ViewBag.Api">Approve</button></td>
+        </tr>
+    }
+    </tbody>
+</table>
+<input type="hidden" value=""/>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+
+            var table = $("#approve").DataTable();
+
+            $("#approve").on("click", ".js-approve", function() {
+
+                var button = $(this);
+
+                bootbox.confirm("Are you sure to approve this record ?", function(result) {
+
+                    if (result) {
+
+                        $.ajax({
+                            url: "/api/" + button.attr("data-api") + "/" + button.attr("data-id"),
+                            method: "PUT",
+                            success: function() {
+
+                                table.row(button.parents("tr")).remove().draw();
+                                toastr.success("Record Approved");
+                            }
+                        });
+
+                    }
+                });
+
+            });
+
+        });
+    </script>
+}

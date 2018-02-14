@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.UI.WebControls;
 
 namespace MedInfo_OOSD.Core.Domain.Interface
 {

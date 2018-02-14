@@ -32,7 +32,7 @@
     }
     </tbody>
 </table>
-
+<input type="hidden" value="@ViewBag.Massage" id="massage"/>
 
 
 
@@ -41,7 +41,15 @@
     <script>
         $(document).ready(function() {
 
-            var table =  $("#doctors").DataTable();
+            $("#doctors").DataTable();
+
+            var value = $("#massage").val();
+
+            if (value === "yes") {
+                
+                toastr.success("Your record has been submitted to admin for approval");
+            }
+
         });
     </script>
 }
