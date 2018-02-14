@@ -55,6 +55,7 @@
 {
     <div class="form-group">
         @Html.TextAreaFor(model => model.Comment.PostComment,new {@class = "form-control"})
+
         @Html.ValidationMessageFor(model => model.Comment.PostComment)
     </div>
 

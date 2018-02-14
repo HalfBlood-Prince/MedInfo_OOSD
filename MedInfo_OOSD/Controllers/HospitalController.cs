@@ -96,7 +96,34 @@ namespace MedInfo_OOSD.Controllers
             if (hospital == null)
                 return HttpNotFound();
 
-            return View("HospitalDetails", Mapper.Map<Hospital,NewHospitalViewModel>(hospital));
+            var viewModel = Mapper.Map<Hospital, HospitalDetailsViewModel>(hospital);
+            viewModel.Comments = _context.Comments.Include(c => c.ApplicationUser).Where(c => c.RecordId == id).ToList();
+
+            return View("HospitalDetails", viewModel);
+        }
+
+        public ActionResult AddHospitalComment(Guid id, HospitalDetailsViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var doctor = _context.Hospitals.Include(d => d.Speciality).SingleOrDefault(c => c.Id == id);
+                var viewModel = Mapper.Map<Hospital, HospitalDetailsViewModel>(doctor);
+                viewModel.Comments = _context.Comments.Where(c => c.RecordId == id).ToList();
+
+                return View("HospitalDetails", viewModel);
+            }
+
+            if (model.Comment == null)
+                return RedirectToAction("HospitalDetails", new {id});
+
+            model.Comment.ApplicationUserId = User.Identity.GetUserId();
+            model.Comment.RecordId = id;
+            model.Comment.CommentDateTime = DateTime.Now;
+
+            _context.Comments.Add(Mapper.Map<CommentViewModel, Comment>(model.Comment));
+            _context.SaveChanges();
+
+            return RedirectToAction("HospitalDetails", new {id});
         }
     }
 }

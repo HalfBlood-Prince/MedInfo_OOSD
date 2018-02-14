@@ -1,4 +1,4 @@
-﻿@model MedInfo_OOSD.Models.NewHospitalViewModel
+﻿@model MedInfo_OOSD.Models.HospitalDetailsViewModel
 
 @{
     ViewBag.Title = "Hospital Details";
@@ -8,32 +8,61 @@
 <h2>Hospital Details</h2>
 
 <table class="table table-hover">
-    
+
     <tr>
         <td>Name: </td>
         <td>@Model.Name</td>
     </tr>
-    
+
     <tr>
         <td>Email: </td>
         <td>@Model.Email</td>
     </tr>
-    
-    
+
+
     <tr>
         <td>Hospital Address: </td>
         <td>@Model.HospitalAddress</td>
     </tr>
-    
-    
+
+
     <tr>
         <td>Speciality Name: </td>
         <td>@Model.Speciality.Name</td>
     </tr>
-    
+
     <tr>
         <td>Emergency Ward: </td>
         <td>@{ var res = Model.DoesHaveEmergencyWard ? "Yes" : "No";} @res</td>
     </tr>
 
 </table>
+
+
+@if (Model.Comments.Any())
+{
+    foreach (var comment in Model.Comments)
+    {
+        <div class="panel panel-default" style="width: 40%">
+            <div class="panel-heading">@comment.ApplicationUser.Email @comment.CommentDateTime.ToString("f")</div>
+            <div class="panel-body">@comment.PostComment</div>
+        </div>
+    }
+}
+
+
+@using (Html.BeginForm("AddHospitalComment", "Hospital", new { id = @Model.Id }))
+{
+    <div class="form-group">
+        @Html.TextAreaFor(model => model.Comment.PostComment, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(model => model.Comment.PostComment)
+    </div>
+
+    <button class="btn btn-primary">Comment</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

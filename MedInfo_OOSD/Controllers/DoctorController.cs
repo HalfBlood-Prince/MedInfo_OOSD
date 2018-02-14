@@ -115,7 +115,8 @@ namespace MedInfo_OOSD.Controllers
             }
 
             if (model.Comment == null)
-                return View("DoctorDetails", model);
+                return RedirectToAction("DoctorDetails", new { id });
+
 
             model.Comment.RecordId = id;
             model.Comment.ApplicationUserId = User.Identity.GetUserId();
@@ -124,10 +125,7 @@ namespace MedInfo_OOSD.Controllers
             _context.Comments.Add(Mapper.Map<CommentViewModel, Comment>(model.Comment));
             _context.SaveChanges();
 
-            model.Comment.PostComment = "Tanim";
-            model.Comments = _context.Comments.Include(c => c.ApplicationUser).Where(c => c.RecordId == id);
-
-            return View("DoctorDetails", model);
+            return RedirectToAction("DoctorDetails", new {id});
         }
     }
 
