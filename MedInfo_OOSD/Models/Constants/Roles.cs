@@ -1,4 +1,4 @@
-﻿namespace MedInfo_OOSD.Models
+﻿namespace MedInfo_OOSD.Models.Constants
 {
     public class Roles
     {

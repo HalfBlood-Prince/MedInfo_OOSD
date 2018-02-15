@@ -33,12 +33,21 @@
     </tbody>
 </table>
 
+<input type="hidden" value="@ViewBag.Massage" id="massage"/>
+
 @section scripts
 {
     <script>
         $(document).ready(function() {
 
             $("#hospitals").DataTable();
+
+            var value = $("#massage").val();
+
+            if (value === "yes") {
+
+                toastr.success("Your record Has been submitted for approval");
+            }
         });
     </script>
 }

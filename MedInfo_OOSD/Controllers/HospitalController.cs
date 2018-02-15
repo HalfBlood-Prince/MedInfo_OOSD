@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using MedInfo_OOSD.Core.Domain;
 using MedInfo_OOSD.Models;
+using MedInfo_OOSD.Models.Constants;
 using MedInfo_OOSD.Persistence;
 using Microsoft.AspNet.Identity;
 
@@ -26,10 +27,19 @@ namespace MedInfo_OOSD.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult ListOfHospitals()
+        public ActionResult ListOfHospitals(bool? isAdded)
         {
-            var hospitals = _context.Hospitals.ToList();
+            var hospitals = _context.Hospitals.Where(h => h.IsApproved).ToList();
             var view = User.IsInRole(Roles.SuperAdmin) ? "ListOfHospitals" : "ListOfHospitalsReadonly";
+
+            if (isAdded.HasValue && isAdded.Value)
+            {
+                ViewBag.Massage = "yes";
+            }
+            else
+            {
+                ViewBag.Massage = "no";
+            }
 
             return View(view,hospitals);
         }
@@ -56,13 +66,14 @@ namespace MedInfo_OOSD.Controllers
                 return View("HospitalForm", model);
             }
 
+            var isAdded = false;
             if (model.Id == Guid.Empty)
             {
                 var hospital = Mapper.Map<NewHospitalViewModel, Hospital>(model);
 
                 hospital.ApplicationUserId = User.Identity.GetUserId();
                 _context.Hospitals.Add(hospital);
-
+                isAdded = true;
             }
             else
             {
@@ -72,7 +83,7 @@ namespace MedInfo_OOSD.Controllers
             }
 
             _context.SaveChanges();
-            return RedirectToAction("ListOfHospitals", "Hospital");
+            return RedirectToAction("ListOfHospitals", "Hospital", new {isAdded});
         }
 
         public ActionResult EditHospital(Guid id)

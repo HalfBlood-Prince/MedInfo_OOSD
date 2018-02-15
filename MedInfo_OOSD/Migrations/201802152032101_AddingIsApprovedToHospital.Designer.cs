@@ -7,13 +7,13 @@ namespace MedInfo_OOSD.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddingIsApprovedToDoctor : IMigrationMetadata
+    public sealed partial class AddingIsApprovedToHospital : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddingIsApprovedToDoctor));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddingIsApprovedToHospital));
         
         string IMigrationMetadata.Id
         {
-            get { return "201802141711021_AddingIsApprovedToDoctor"; }
+            get { return "201802152032101_AddingIsApprovedToHospital"; }
         }
         
         string IMigrationMetadata.Source

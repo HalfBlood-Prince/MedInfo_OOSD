@@ -7,6 +7,7 @@ using MedInfo_OOSD.Models;
 using MedInfo_OOSD.Persistence;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity;
+using MedInfo_OOSD.Models.Constants;
 
 namespace MedInfo_OOSD.Controllers
 {

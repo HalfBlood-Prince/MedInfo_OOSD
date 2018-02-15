@@ -272,14 +272,23 @@
     <Compile Include="Migrations\201802141711021_AddingIsApprovedToDoctor.Designer.cs">
       <DependentUpon>201802141711021_AddingIsApprovedToDoctor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802152032101_AddingIsApprovedToHospital.cs" />
+    <Compile Include="Migrations\201802152032101_AddingIsApprovedToHospital.Designer.cs">
+      <DependentUpon>201802152032101_AddingIsApprovedToHospital.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApproveListViewModel.cs" />
     <Compile Include="Models\CommentViewModel.cs" />
+    <Compile Include="Models\Constants\Actions.cs" />
+    <Compile Include="Models\Constants\Apies.cs" />
+    <Compile Include="Models\Constants\Controllers.cs" />
     <Compile Include="Models\DoctorDetailsViewModel.cs" />
+    <Compile Include="Models\Enum\EntityType.cs" />
     <Compile Include="Models\HospitalDetailsViewModel.cs" />
     <Compile Include="Models\NewDoctorViewModel.cs" />
     <Compile Include="Models\NewHospitalViewModel.cs" />
-    <Compile Include="Models\Roles.cs" />
+    <Compile Include="Models\Constants\Roles.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Core\Domain\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -492,7 +501,9 @@
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -609,6 +620,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802141711021_AddingIsApprovedToDoctor.resx">
       <DependentUpon>201802141711021_AddingIsApprovedToDoctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802152032101_AddingIsApprovedToHospital.resx">
+      <DependentUpon>201802152032101_AddingIsApprovedToHospital.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

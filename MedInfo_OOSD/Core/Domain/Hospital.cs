@@ -23,6 +23,8 @@ namespace MedInfo_OOSD.Core.Domain
 
         public string ApplicationUserId { get; set; }
 
+        public bool IsApproved { get; set; }
+
 
     }
 }
