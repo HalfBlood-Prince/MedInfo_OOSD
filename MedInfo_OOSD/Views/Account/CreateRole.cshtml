@@ -1,0 +1,22 @@
+﻿@model MedInfo_OOSD.Models.CreateRoleViewModel
+
+@{
+    ViewBag.Title = "Create Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Role</h2>
+
+@using (Html.BeginForm("CreateRole", "Account", FormMethod.Post))
+{
+
+    @Html.ValidationSummary(true,"Resolve these errors")
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RoleName)
+        @Html.TextBoxFor(model => model.RoleName, new { @class = "form-control"})
+    </div>
+
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-default">Create</button>
+}

@@ -44,7 +44,7 @@ namespace MedInfo_OOSD.Controllers
             return View(view,hospitals);
         }
 
-
+        
         public ActionResult NewHospital()
         {
             var viewModel = new NewHospitalViewModel
@@ -135,7 +135,7 @@ namespace MedInfo_OOSD.Controllers
 
             _context.Comments.Add(Mapper.Map<CommentViewModel, Comment>(model.Comment));
             _context.SaveChanges();
-
+            
             return RedirectToAction("HospitalDetails", new {id});
         }
     }

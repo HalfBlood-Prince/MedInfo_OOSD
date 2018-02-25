@@ -12,7 +12,8 @@ namespace MedInfo_OOSD
                         "~/Scripts/jquery-{version}.js",
                 "~/Scripts/datatables/jquery.dataTables.js",
                 "~/Scripts/bootbox.js",
-                "~/Scripts/toastr.js"));
+                "~/Scripts/toastr.js",
+                "~/Scripts/alert.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

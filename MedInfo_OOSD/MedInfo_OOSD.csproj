@@ -14,7 +14,7 @@
     <RootNamespace>MedInfo_OOSD</RootNamespace>
     <AssemblyName>MedInfo_OOSD</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -283,12 +283,14 @@
     <Compile Include="Models\Constants\Actions.cs" />
     <Compile Include="Models\Constants\Apies.cs" />
     <Compile Include="Models\Constants\Controllers.cs" />
+    <Compile Include="Models\CreateRoleViewModel.cs" />
     <Compile Include="Models\DoctorDetailsViewModel.cs" />
     <Compile Include="Models\Enum\EntityType.cs" />
     <Compile Include="Models\HospitalDetailsViewModel.cs" />
     <Compile Include="Models\NewDoctorViewModel.cs" />
     <Compile Include="Models\NewHospitalViewModel.cs" />
     <Compile Include="Models\Constants\Roles.cs" />
+    <Compile Include="Models\RegisterModeratorViewModel.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Core\Domain\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -415,6 +417,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\alert.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -549,6 +552,8 @@
     <Content Include="Views\Hospital\ListOfHospitalsReadonly.cshtml" />
     <Content Include="Views\Approve\ApproveList.cshtml" />
     <Content Include="Views\Shared\_NavBarAdmin.cshtml" />
+    <Content Include="Views\Account\RegisterModerator.cshtml" />
+    <Content Include="Views\Account\CreateRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

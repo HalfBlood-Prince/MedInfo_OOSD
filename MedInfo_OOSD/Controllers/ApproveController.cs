@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
-using MedInfo_OOSD.Core.Domain.Interface;
 using MedInfo_OOSD.Models;
 using MedInfo_OOSD.Models.Constants;
 using MedInfo_OOSD.Models.Enum;

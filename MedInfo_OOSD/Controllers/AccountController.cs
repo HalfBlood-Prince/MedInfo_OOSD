@@ -1,15 +1,15 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Management;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.Expressions;
 using MedInfo_OOSD.Core.Domain;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MedInfo_OOSD.Models;
+using MedInfo_OOSD.Models.Constants;
 using MedInfo_OOSD.Persistence;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -20,9 +20,11 @@ namespace MedInfo_OOSD.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly ApplicationDbContext _context;
 
         public AccountController()
         {
+            _context = ApplicationDbContext.Create();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -60,7 +62,7 @@ namespace MedInfo_OOSD.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            ViewBag.ReturnUrl = returnUrl; 
             return View();
         }
 
@@ -146,7 +148,7 @@ namespace MedInfo_OOSD.Controllers
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Account/Register 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -154,12 +156,18 @@ namespace MedInfo_OOSD.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email, 
+                    Email = model.Email
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+                    #region RoleAssigning
+
                     //Temp Code
 
                     //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
@@ -168,6 +176,8 @@ namespace MedInfo_OOSD.Controllers
                     //await roleManager.CreateAsync(new IdentityRole("SuperAdmin"));
 
                     //await UserManager.AddToRoleAsync(user.Id, "SuperAdmin");
+
+                    #endregion
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -183,6 +193,91 @@ namespace MedInfo_OOSD.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+
+        //
+        // GET: /Account/RegisterMorderator
+        // This action will serve a view for register moderator
+        [Authorize(Roles = Roles.SuperAdmin)]
+        public ActionResult RegisterModerator()
+        {
+            var viewModel = new RegisterModeratorViewModel
+            {
+                Roles = _context.Roles.ToList()
+            };
+            
+            return View(viewModel);
+        }
+
+
+        // POST: /Account/RegisterMorderator
+        // This action takes a view model and create a moderator
+        // then assign a role tor moderator 
+        [HttpPost]
+        [Authorize(Roles = Roles.SuperAdmin)]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterModerator(RegisterModeratorViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email
+                };
+
+                var result = await UserManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    await UserManager.AddToRoleAsync(user.Id, model.Role);
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+
+
+        //
+        // GET: /Account/CreateRole
+        // This action serves a view for creating role
+        [Authorize(Roles = Roles.SuperAdmin)]
+        public ActionResult CreateRole()
+        {
+            return View();
+        }
+
+
+        [Authorize(Roles = Roles.SuperAdmin)]
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<ActionResult> CreateRole(CreateRoleViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+            var result = await roleManager.CreateAsync(new IdentityRole(model.RoleName));
+
+            if (result.Succeeded)
+                return RedirectToAction("Index", "Home");
+
+            AddErrors(result);
+
+            return View();
+        }
+
 
         //
         // GET: /Account/ConfirmEmail
