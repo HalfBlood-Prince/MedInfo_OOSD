@@ -67,18 +67,20 @@ namespace MedInfo_OOSD.Controllers
                 return View("DoctorForm", model);
             }
 
-            var isAdded = false;
+            var isAdded = true;
             if (model.Id == Guid.Empty)
             {
                 var doctor = Mapper.Map<NewDoctorViewModel, Doctor>(model);
 
-                if (User.IsInRole(Roles.SuperAdmin))
+                if (User.IsInRole(Roles.SuperAdmin) || User.IsInRole(Roles.Moderator))
+                {
                     doctor.IsApproved = true;
+                    isAdded = false;
+                }
 
 
                 doctor.ApplicationUserId = User.Identity.GetUserId();
                 _context.Doctors.Add(doctor);
-                isAdded = true;
             }
             else
             {

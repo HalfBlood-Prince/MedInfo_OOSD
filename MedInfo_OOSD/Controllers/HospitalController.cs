@@ -66,14 +66,19 @@ namespace MedInfo_OOSD.Controllers
                 return View("HospitalForm", model);
             }
 
-            var isAdded = false;
+            var isAdded = true;
             if (model.Id == Guid.Empty)
             {
                 var hospital = Mapper.Map<NewHospitalViewModel, Hospital>(model);
 
+                if (User.IsInRole(Roles.SuperAdmin) || User.IsInRole(Roles.Moderator))
+                {
+                    hospital.IsApproved = true;
+                    isAdded = false;
+                }
+
                 hospital.ApplicationUserId = User.Identity.GetUserId();
                 _context.Hospitals.Add(hospital);
-                isAdded = true;
             }
             else
             {

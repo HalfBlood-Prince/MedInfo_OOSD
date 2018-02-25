@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    @{ var navbar = User.IsInRole(Roles.SuperAdmin) ? "_NavBarAdmin" : "_NavBar";}
+    @{ var navbar = User.IsInRole(Roles.SuperAdmin) || User.IsInRole(Roles.Moderator) ? "_NavBarAdmin" : "_NavBar";}
 
 
     @Html.Partial(navbar)

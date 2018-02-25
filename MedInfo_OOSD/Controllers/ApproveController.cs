@@ -23,7 +23,7 @@ namespace MedInfo_OOSD.Controllers
         }
 
         // GET: Approve
-        [Authorize(Roles = Roles.SuperAdmin)]
+        [Authorize(Roles = Roles.SuperAdmin_Moderator)]
         public ActionResult Index()
         {
             var viewModel = new ApproveListViewModel

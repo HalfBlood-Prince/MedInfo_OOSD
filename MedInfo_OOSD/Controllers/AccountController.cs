@@ -230,8 +230,6 @@ namespace MedInfo_OOSD.Controllers
 
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
                     await UserManager.AddToRoleAsync(user.Id, model.Role);
 
                     return RedirectToAction("Index", "Home");
@@ -240,6 +238,7 @@ namespace MedInfo_OOSD.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            model.Roles = _context.Roles.ToList();
             return View(model);
         }
 
