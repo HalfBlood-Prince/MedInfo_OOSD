@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -114,6 +115,7 @@ namespace MedInfo_OOSD.Controllers
 
             var viewModel = Mapper.Map<Hospital, HospitalDetailsViewModel>(hospital);
             viewModel.Comments = _context.Comments.Include(c => c.ApplicationUser).Where(c => c.RecordId == id).ToList();
+            viewModel.ApiKey = ConfigurationManager.AppSettings["apiKey"];
 
             return View("HospitalDetails", viewModel);
         }

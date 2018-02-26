@@ -23,7 +23,7 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.HospitalAddress)
-        @Html.TextAreaFor(model => model.HospitalAddress,new {@class="form-control"})
+        @Html.TextAreaFor(model => model.HospitalAddress, new { @class = "form-control", placeholder = "Please Enter an Address like this \n 89/1 Pantha Path\r\nDhaka 1215\r\nBangladesh", rows = "4" })
         @Html.ValidationMessageFor(model => model.HospitalAddress)
     </div>
 

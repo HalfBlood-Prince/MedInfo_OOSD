@@ -21,5 +21,7 @@ namespace MedInfo_OOSD.Models
         public IEnumerable<Comment> Comments { get; set; }
 
         public CommentViewModel Comment { get; set; }
+
+        public string ApiKey { get; set; }
     }
 }

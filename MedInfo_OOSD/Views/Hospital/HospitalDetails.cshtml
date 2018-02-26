@@ -1,4 +1,5 @@
-﻿@model MedInfo_OOSD.Models.HospitalDetailsViewModel
+﻿@using Jmelosegui.Mvc.GoogleMap
+@model MedInfo_OOSD.Models.HospitalDetailsViewModel
 
 @{
     ViewBag.Title = "Hospital Details";
@@ -39,6 +40,13 @@
 </table>
 
 
+
+@( Html.GoogleMap()
+       .Name("map")
+       .Height(300)
+       .Center(c => c.Address(Model.HospitalAddress))
+       .Markers(m => m.Add()).ApiKey(Model.ApiKey)) <br /> <br />
+
 @if (Model.Comments.Any())
 {
     foreach (var comment in Model.Comments)
@@ -68,4 +76,5 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+    @(Html.GoogleMap().ScriptRegistrar())
 }
