@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Jmelosegui.Mvc.GoogleMap
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -29,3 +30,31 @@
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
 </div>
+
+@*@(
+    
+ Html.GoogleMap()
+                .Name("map")
+                .Height(300)
+                .Center(c => c.Latitude(23.140971656573335)
+                              .Longitude(-82.39435493946075))
+                .Markers(m => m.Add().Title("Hello World!")).ApiKey("AIzaSyDIuBQKHjBH6xORExQJKAhyyVvu7Vg25IQ")
+
+        Html.GoogleMap()
+            .Name("map")
+            .Height(500)
+                .Markers(m => m.Add().Title("Hello World!"))
+
+        Html.GoogleMap()
+            .Name("map")
+            .Height(300)
+            .Center(c => c.Address("west rajabazar,Dhaka,Bangladesh"))
+            .Markers(m => m.Add()).ApiKey("AIzaSyDIuBQKHjBH6xORExQJKAhyyVvu7Vg25IQ")
+
+
+)*@
+
+@section scripts
+{
+    @(Html.GoogleMap().ScriptRegistrar())
+}   

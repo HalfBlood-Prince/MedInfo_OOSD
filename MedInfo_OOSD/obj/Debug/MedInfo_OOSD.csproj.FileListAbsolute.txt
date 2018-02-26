@@ -83,3 +83,4 @@ C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Mig
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AddingCommentDateTime.resources
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AddingIsApprovedToDoctor.resources
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AddingIsApprovedToHospital.resources
+C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\bin\Jmelosegui.Mvc.GoogleMap.dll

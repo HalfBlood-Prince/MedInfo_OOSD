@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
@@ -29,7 +30,9 @@ namespace MedInfo_OOSD.Controllers
         [AllowAnonymous]
         public ActionResult ListOfDoctors(bool? isAdded)
         {
-            var list = _context.Doctors.Include(d => d.Speciality).Where(d => d.IsApproved).ToList();
+            var list = _context.Doctors.Include(d => d.Speciality)
+                .Where(d => d.IsApproved)
+                .ToList();
 
             var view = User.IsInRole(Roles.SuperAdmin) ? "ListofDoctors" : "ListofDoctorsReadOnly";
 
@@ -105,7 +108,6 @@ namespace MedInfo_OOSD.Controllers
             };
 
             Mapper.Map(doctor, viewModel);
-            viewModel.Name = "Tanim";
             return View("DoctorForm",viewModel);
         }
 
@@ -116,7 +118,7 @@ namespace MedInfo_OOSD.Controllers
 
             var viewModel = Mapper.Map<Doctor, DoctorDetailsViewModel>(doctor);
             viewModel.Comments = _context.Comments.Include(c => c.ApplicationUser).Where(c => c.RecordId == id).ToList();
-
+            viewModel.ApiKey = ConfigurationManager.AppSettings["apiKey"];
 
             return View("DoctorDetails", viewModel);
         }

@@ -26,13 +26,13 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.ChemberAddress)
-        @Html.TextAreaFor(model => model.ChemberAddress, new { @class = "form-control" })
+        @Html.TextAreaFor(model => model.ChemberAddress, new { @class = "form-control", placeholder = "Please Enter an Address like this \n 89/1 Pantha Path\r\nDhaka 1215\r\nBangladesh", rows = "4" })
         @Html.ValidationMessageFor(model => model.ChemberAddress)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.AvailableDays)
-        @Html.TextBoxFor(model => model.AvailableDays, new { @class = "form-control" })
+        @Html.TextBoxFor(model => model.AvailableDays, new { @class = "form-control"})
         @Html.ValidationMessageFor(model => model.AvailableDays)
     </div>
 
