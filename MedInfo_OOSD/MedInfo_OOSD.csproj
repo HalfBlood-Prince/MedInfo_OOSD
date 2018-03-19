@@ -186,6 +186,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HospitalController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Core\Domain\BloodBank.cs" />
     <Compile Include="Core\Domain\Comment.cs" />
     <Compile Include="Core\Domain\Doctor.cs" />
     <Compile Include="Core\Domain\Hospital.cs" />
