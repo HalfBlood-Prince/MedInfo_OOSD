@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Configuration;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using MedInfo_OOSD.Core.Domain;
@@ -13,10 +15,23 @@ namespace MedInfo_OOSD
 {
     public class EmailService : IIdentityMessageService
     {
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            var email = new MailMessage(new MailAddress("noreply@myproject.com", "(do not reply)"),
+                new MailAddress(message.Destination))
+            {
+                Subject = message.Subject,
+                Body = message.Body,
+                IsBodyHtml = true
+            };
+
+
+            using (var mailClient = new GmailEmailService())
+            {
+                //In order to use the original from email address, uncomment this line:
+                //email.From = new MailAddress(mailClient.UserName, "(do not reply)");
+                await mailClient.SendMailAsync(email);
+            }
         }
     }
 
@@ -102,5 +117,22 @@ namespace MedInfo_OOSD
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
         }
+    }
+
+    public class GmailEmailService : SmtpClient
+    {
+        // Gmail user-name
+        public string UserName { get; set; }
+
+        public GmailEmailService() :
+            base(ConfigurationManager.AppSettings["GmailHost"], Int32.Parse(ConfigurationManager.AppSettings["GmailPort"]))
+        {
+            //Get values from web.config file:
+            UserName = ConfigurationManager.AppSettings["GmailUserName"];
+            EnableSsl = bool.Parse(ConfigurationManager.AppSettings["GmailSsl"]);
+            UseDefaultCredentials = false;
+            Credentials = new System.Net.NetworkCredential(this.UserName, ConfigurationManager.AppSettings["GmailPassword"]);
+        }
+
     }
 }

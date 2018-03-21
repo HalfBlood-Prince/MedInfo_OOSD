@@ -1,4 +1,6 @@
 ﻿@using Jmelosegui.Mvc.GoogleMap
+@using Microsoft.AspNet.Identity
+@using Roles = MedInfo_OOSD.Models.Constants.Roles
 @model MedInfo_OOSD.Models.HospitalDetailsViewModel
 
 @{
@@ -47,16 +49,35 @@
        .Center(c => c.Address(Model.HospitalAddress))
        .Markers(m => m.Add()).ApiKey(Model.ApiKey)) <br /> <br />
 
-@if (Model.Comments.Any())
-{
-    foreach (var comment in Model.Comments)
-    {
-        <div class="panel panel-default" style="width: 40%">
-            <div class="panel-heading">@comment.ApplicationUser.Email @comment.CommentDateTime.ToString("f")</div>
-            <div class="panel-body">@comment.PostComment</div>
-        </div>
-    }
+
+@{
+    var isAdmin = User.IsInRole(Roles.SuperAdmin);
+    var userId = User.Identity.GetUserId();
+    var isAuth = User.Identity.IsAuthenticated;
 }
+
+<div class="comment-del">
+    @if (Model.Comments.Any())
+    {
+        foreach (var comment in Model.Comments)
+        {
+            <div class="panel panel-default" style="width: 40%" id="@comment.Id">
+                <div class="panel-heading">@comment.ApplicationUser.Email @comment.CommentDateTime.ToString("f")</div>
+                <div class="panel-body">@comment.PostComment</div>
+                
+                @if (isAuth)
+                {
+                    if (isAdmin || userId.Equals(comment.ApplicationUserId))
+                    {
+
+                        <button class="btn btn-danger" style="border: 0px; padding: 5px;"><i class="glyphicon glyphicon-trash"></i></button>
+
+                    }
+                }
+            </div>
+        }
+    }
+</div>
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -77,4 +98,5 @@
 {
     @Scripts.Render("~/bundles/jqueryval")
     @(Html.GoogleMap().ScriptRegistrar())
+    <script src="~/Scripts/deleteComment.js"></script>
 }

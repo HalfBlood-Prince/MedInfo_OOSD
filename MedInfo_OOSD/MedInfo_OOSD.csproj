@@ -16,7 +16,7 @@
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>true</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44302</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -565,6 +565,7 @@
     <Content Include="Views\Shared\_NavBarAdmin.cshtml" />
     <Content Include="Views\Account\RegisterModerator.cshtml" />
     <Content Include="Views\Account\CreateRole.cshtml" />
+    <Content Include="Views\Account\LoginError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
