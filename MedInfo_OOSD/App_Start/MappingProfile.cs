@@ -28,6 +28,7 @@ namespace MedInfo_OOSD
             Mapper.CreateMap<Speciality, SpecialityDto>();
             Mapper.CreateMap<Doctor, DoctorDetailsViewModel>();
             Mapper.CreateMap<Hospital, HospitalDetailsViewModel>();
+            Mapper.CreateMap<Comment, CommentDto>();
             
 
            

@@ -179,6 +179,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\DeleteController.cs" />
     <Compile Include="Controllers\Api\DoctorsController.cs" />
     <Compile Include="Controllers\Api\HospitalsController.cs" />
     <Compile Include="Controllers\ApproveController.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Core\Domain\Hospital.cs" />
     <Compile Include="Core\Domain\Interface\IEntity.cs" />
     <Compile Include="Core\Domain\Speciality.cs" />
+    <Compile Include="Dtos\CommentDto.cs" />
     <Compile Include="Dtos\DoctorDto.cs" />
     <Compile Include="Dtos\HospitalDto.cs" />
     <Compile Include="Dtos\SpecialityDto.cs" />
@@ -497,6 +499,7 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.js" />
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\deleteComment.js" />
     <Content Include="Scripts\jmelosegui.googlemap.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
