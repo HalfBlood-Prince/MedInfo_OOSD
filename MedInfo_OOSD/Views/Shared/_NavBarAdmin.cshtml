@@ -1,4 +1,4 @@
-﻿    <div class="navbar navbar-inverse navbar-fixed-top">
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -20,8 +20,18 @@
                 {
                     <li>@Html.ActionLink("Add Moderator", "RegisterModerator", "Account")</li>
                 }
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Chat Box
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/Chat/index">Shout</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </li>
             </ul>
             @Html.Partial("_LoginPartial")
-            </div>
         </div>
     </div>
+</div>

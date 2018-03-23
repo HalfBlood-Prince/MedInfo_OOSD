@@ -9,6 +9,7 @@ namespace MedInfo_OOSD
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            app.MapSignalR();
         }
     }
 }

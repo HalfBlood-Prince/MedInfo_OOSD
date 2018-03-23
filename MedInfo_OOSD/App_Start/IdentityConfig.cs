@@ -17,7 +17,7 @@ namespace MedInfo_OOSD
     {
         public async Task SendAsync(IdentityMessage message)
         {
-            var email = new MailMessage(new MailAddress("noreply@myproject.com", "(do not reply)"),
+            var email = new MailMessage(new MailAddress("noreply@medinfo.com", "(do not reply)"),
                 new MailAddress(message.Destination))
             {
                 Subject = message.Subject,
