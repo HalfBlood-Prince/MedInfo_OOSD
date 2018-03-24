@@ -9,5 +9,10 @@ namespace MedInfo_OOSD.Controllers
         {
             return View("Shout");
         }
+
+        public ActionResult Support()
+        {
+            return View();
+        }
     }
 }

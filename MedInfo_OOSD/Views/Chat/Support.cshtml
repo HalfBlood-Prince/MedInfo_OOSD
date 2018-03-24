@@ -1,0 +1,44 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Support";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="chat-box" class="panel-group box"></div>
+
+
+<div id="error-massage" class="alert alert-danger" style="width: 25%;">No Admin Is Available</div>
+
+<div class="chat">
+
+    <div class="form-group">
+        <input type="text" class="form-control" />
+    </div>
+
+    <button class="btn btn-default btn-sm">Send</button>
+</div>
+
+
+<style>
+    .chat {
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 5% auto 0px auto;
+    }
+
+    .box {
+        margin-top: 5%;
+    }
+</style>
+
+
+
+@section scripts
+{
+    <script src="~/Scripts/jquery.signalR-2.2.3.min.js"></script>
+    <script src="~/signalr/js"></script>
+    <script src="~/Scripts/Support.js"></script>
+}
+
+

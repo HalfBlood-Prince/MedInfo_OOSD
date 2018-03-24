@@ -196,7 +196,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HospitalController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Core\ChatHub.cs" />
+    <Compile Include="Core\Chat\ChatHub.cs" />
+    <Compile Include="Core\Chat\User.cs" />
     <Compile Include="Core\Domain\BloodBank.cs" />
     <Compile Include="Core\Domain\Comment.cs" />
     <Compile Include="Core\Domain\Doctor.cs" />
@@ -526,6 +527,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\signalr.js" />
+    <Content Include="Scripts\Support.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -580,6 +582,8 @@
     <Content Include="Views\Account\CreateRole.cshtml" />
     <Content Include="Views\Account\LoginError.cshtml" />
     <Content Include="Views\Chat\Shout.cshtml" />
+    <Content Include="Views\Chat\Support.cshtml" />
+    <Content Include="Views\Account\ShowMsg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
