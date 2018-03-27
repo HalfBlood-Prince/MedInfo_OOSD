@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MedInfo_OOSD.Core.Domain;
 using MedInfo_OOSD.Models.Constants;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 
-namespace MedInfo_OOSD.Core.Chat
+namespace MedInfo_OOSD.Controllers.Chat
 {
     [HubName("chatHub")]
     public class ChatHub : Hub
@@ -15,6 +16,12 @@ namespace MedInfo_OOSD.Core.Chat
         public static List<User> Users = new List<User>();
 
 
+        //
+        /// <summary>
+        ///     This method takes a massage and push that massage 
+        ///     to all connected clients.
+        /// </summary>
+        /// <param name="massage">It takes a string massage</param>
         public void Announce(string massage)
         {
             var userName = Context.User.Identity.GetUserName();
@@ -23,6 +30,11 @@ namespace MedInfo_OOSD.Core.Chat
         }
 
 
+        //
+        /// <summary>
+        ///     This method make peer to peer connection between admin
+        ///     and a single user.
+        /// </summary>
         public async Task AddUser()
         {
             var user = new User
@@ -33,13 +45,16 @@ namespace MedInfo_OOSD.Core.Chat
                 
             };
 
-
             if (user.IsAdmin)
             {
                 user.IsAvailable = true;
+
                 user.ChatGroup = Context.User.Identity.GetUserName();
+
                 await Groups.Add(user.ConnectionId, user.ChatGroup);
+
                 Users.Add(user);
+
                 Clients.Caller.onConnected();
             }
             else
@@ -49,8 +64,11 @@ namespace MedInfo_OOSD.Core.Chat
                 if (userInList != null)
                 {
                     userInList.IsAvailable = false;
+
                     user.ChatGroup = userInList.ChatGroup;
+
                     await Groups.Add(user.ConnectionId, user.ChatGroup);
+
                     Users.Add(user);
 
                     Clients.Caller.onConnected();
@@ -63,6 +81,13 @@ namespace MedInfo_OOSD.Core.Chat
         }
 
 
+        //
+        /// <summary>
+        ///     This method push massage to user or 
+        ///     admin when they are connected in a 
+        ///     peer to peer connection.
+        /// </summary>
+        /// <param name="massage">It takes a string massagey</param>
         public void SendMassage(string massage)
         {
             if (!Users.Any()) return;
@@ -77,6 +102,15 @@ namespace MedInfo_OOSD.Core.Chat
         }
 
 
+
+        //
+        /// <inheritdoc />
+        /// <summary>
+        ///     Its an overridden method.
+        ///     This application handles when a user 
+        ///     gets disconnected.
+        /// </summary>
+        /// <param name="stopCalled">stopCalled parent methods parameter</param>
         public override Task OnDisconnected(bool stopCalled)
         {
             var user = Users.SingleOrDefault(u => u.ConnectionId == Context.ConnectionId);

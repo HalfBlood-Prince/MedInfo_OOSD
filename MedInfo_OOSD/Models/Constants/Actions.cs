@@ -4,5 +4,6 @@
     {
         public const string DoctorDetails = "DoctorDetails";
         public const string HospitalDetails = "HospitalDetails";
+        public const string BankDetails = "Details";
     }
 }

@@ -88,3 +88,4 @@ C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\bin\Microsoft.AspNet.Signa
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\bin\Microsoft.AspNet.SignalR.Core.xml
 C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Tanim\Dropbox\OOSD\MedInfo_OOSD\MedInfo_OOSD\obj\Debug\MedInfo_OOSD.Migrations.AddingBloodBankModel.resources

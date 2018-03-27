@@ -1,0 +1,103 @@
+﻿@using Jmelosegui.Mvc.GoogleMap
+@using Microsoft.AspNet.Identity
+@using Roles = MedInfo_OOSD.Models.Constants.Roles
+@model MedInfo_OOSD.Models.BankDetailsViewModel
+
+@{
+    ViewBag.Title = "Bank's Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Bank's Details</h2>
+
+
+<table class="table table-hover">
+    <tr>
+        <th>Name: </th>
+        <th>@Model.Name</th>
+    </tr>
+
+
+    <tr>
+        <th>Available Days: </th>
+        <th>@Model.AvailableDays</th>
+    </tr>
+
+
+    <tr>
+        <th>Chember Address: </th>
+        <th>@Model.Address</th>
+    </tr>
+
+    <tr>
+        <th>Email: </th>
+        <th>@Model.Email</th>
+    </tr>
+
+
+</table>
+
+@{
+    var isAdmin = User.IsInRole(Roles.SuperAdmin);
+    var userId = User.Identity.GetUserId();
+    var isAuth = User.Identity.IsAuthenticated;
+}
+
+@( Html.GoogleMap()
+       .Name("map")
+       .Height(300)
+           .Center(c => c.Address(Model.Address))
+       .Markers(m => m.Add()).ApiKey(Model.ApiKey)) <br /> <br />
+
+<div class="comment-del">
+
+    @if (Model.Comments.Any())
+    {
+        foreach (var comment in Model.Comments)
+        {
+
+            <div class="panel panel-default" id="@comment.Id" style="width: 40%">
+
+                <div class="panel-heading">@comment.ApplicationUser.Email @comment.CommentDateTime.ToString("f")</div>
+                <div class="panel-body">@comment.PostComment</div>
+
+                @if (isAuth)
+                {
+                    if (isAdmin || userId.Equals(comment.ApplicationUserId))
+                    {
+
+                        <button class="btn btn-danger" style="border: 0px; padding: 5px;"><i class="glyphicon glyphicon-trash"></i></button>
+
+                    }
+                }
+            </div>
+        }
+    }
+
+
+</div>
+
+<div class="clearfix"></div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    using (Html.BeginForm("AddBankComment", "BloodBank", new { id = Model.Id }))
+    {
+        <div class="form-group">
+            @Html.TextAreaFor(model => model.Comment.PostComment, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.Comment.PostComment)
+        </div>
+        @Html.AntiForgeryToken()
+        <button class="btn btn-primary">Comment</button>
+    }
+
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @(Html.GoogleMap().ScriptRegistrar())
+
+    <script src="~/Scripts/deleteComment.js"></script>
+}

@@ -85,7 +85,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    using (Html.BeginForm("AddDoctorComment", "Doctor", new { id = @Model.Id }))
+    using (Html.BeginForm("AddDoctorComment", "Doctor", new { id = Model.Id }))
     {
         <div class="form-group">
             @Html.TextAreaFor(model => model.Comment.PostComment, new { @class = "form-control" })

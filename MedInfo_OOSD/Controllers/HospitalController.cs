@@ -126,9 +126,10 @@ namespace MedInfo_OOSD.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var doctor = _context.Hospitals.Include(d => d.Speciality).SingleOrDefault(c => c.Id == id);
-                var viewModel = Mapper.Map<Hospital, HospitalDetailsViewModel>(doctor);
-                viewModel.Comments = _context.Comments.Where(c => c.RecordId == id).ToList();
+                var hospital = _context.Hospitals.Include(d => d.Speciality).SingleOrDefault(c => c.Id == id);
+                var viewModel = Mapper.Map<Hospital, HospitalDetailsViewModel>(hospital);
+                viewModel.Comments = _context.Comments.Include(c => c.ApplicationUser).Where(c => c.RecordId == id).ToList();
+                viewModel.ApiKey = ConfigurationManager.AppSettings["apiKey"];
 
                 return View("HospitalDetails", viewModel);
             }

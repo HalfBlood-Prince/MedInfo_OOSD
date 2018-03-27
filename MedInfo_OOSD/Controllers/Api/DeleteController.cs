@@ -24,7 +24,16 @@ namespace MedInfo_OOSD.Controllers.Api
             base.Dispose(disposing);
         }
 
-
+        //
+        // DELETE: /api/Delete/id
+        ///
+        /// <summary>
+        /// This action takes an id for deleting an comment.
+        /// </summary>
+        /// 
+        /// <param name="id">Its an interger id of a comment.</param>
+        /// 
+        /// <returns> it returns an comment object in form of a Dto.</returns>
         [HttpDelete]
         public IHttpActionResult DeleteComment(int id)
         {

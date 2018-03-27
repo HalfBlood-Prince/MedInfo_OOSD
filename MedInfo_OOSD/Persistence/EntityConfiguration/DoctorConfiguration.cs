@@ -47,4 +47,43 @@ namespace MedInfo_OOSD.Persistence.EntityConfiguration
             #endregion
         }
     }
+
+    public class BloodBankConfiguration : EntityTypeConfiguration<BloodBank>
+    {
+        public BloodBankConfiguration()
+        {
+            HasKey(b => b.Id);
+
+            #region Properties
+
+            Property(b => b.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
+            Property(b => b.Name)
+                .HasMaxLength(255)
+                .IsRequired();
+
+            Property(b => b.Address)
+                .IsRequired()
+                .HasMaxLength(255);
+
+            Property(b => b.AvailableDays)
+                .IsRequired()
+                .HasMaxLength(255);
+
+            Property(b => b.Email)
+                .HasMaxLength(100)
+                .IsRequired();
+
+            #endregion
+
+            #region Relationships
+
+            HasRequired(b => b.ApplicationUser)
+                .WithMany(a => a.BloodBanks)
+                .HasForeignKey(b => b.ApplicationUserId);
+
+            #endregion
+        }
+    }
 }

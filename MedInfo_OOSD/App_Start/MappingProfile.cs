@@ -18,9 +18,13 @@ namespace MedInfo_OOSD
 
             Mapper.CreateMap<CommentViewModel, Comment>()
                 .ForMember(m => m.Id, opt => opt.Ignore());
-            
-            //Domain to Model
 
+            Mapper.CreateMap<BloodBankViewModel, BloodBank>()
+                .ForMember(m => m.Id, opt => opt.Ignore());
+            
+
+
+            //Domain to Model
             Mapper.CreateMap<Doctor, NewDoctorViewModel>();
             Mapper.CreateMap<Doctor, DoctorDto>();
             Mapper.CreateMap<Hospital, NewHospitalViewModel>();
@@ -29,11 +33,13 @@ namespace MedInfo_OOSD
             Mapper.CreateMap<Doctor, DoctorDetailsViewModel>();
             Mapper.CreateMap<Hospital, HospitalDetailsViewModel>();
             Mapper.CreateMap<Comment, CommentDto>();
-            
-
+            Mapper.CreateMap<BloodBank, BloodBankViewModel>();
+            Mapper.CreateMap<BloodBank, BankDetailsViewModel>();
+            Mapper.CreateMap<BloodBank, BloodBankDto>();
            
-            //Domain to Domain
 
+
+            //Domain to Domain
             Mapper.CreateMap<Speciality, Speciality>();
         }
     }

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<MedInfo_OOSD.Core.Domain.BloodBank>
+
+@{
+    ViewBag.Title = "List Of Banks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List Of Banks</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    @Html.ActionLink("New Bank", "NewBank", "BloodBank", null, new { @class = "btn btn-default", style = "margin-bottom: 10px;" })
+}
+
+
+
+<table class="table table-hover table-bordered" id="banks">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var bank in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(bank.Name, "Details", "BloodBank", new { id = bank.Id }, new { @class = "btn btn-link" })</td>
+                <td>@bank.Address</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<input type="hidden" value="@ViewBag.Massage" id="massage" />
+@section scripts
+{
+    <script>
+
+        $(document).ready(function() {
+
+
+
+            $("#banks").DataTable();
+
+            var value = $("#massage").val();
+
+            if (value === "yes") {
+
+                toastr.success("Your record has been submitted to admin for approval");
+            }
+
+
+        });
+
+
+    </script>
+}

@@ -1,0 +1,49 @@
+﻿@model MedInfo_OOSD.Models.BloodBankViewModel
+
+@{
+    ViewBag.Title = "Blood Bank";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Blood Bank</h2>
+
+
+@using (Html.BeginForm("SaveBank","BloodBank"))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name,new {@class = "form-control"})
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address)
+        @Html.TextAreaFor(model => model.Address, new { @class = "form-control", placeholder = "Please Enter an Address like this \n 89/1 Pantha Path\r\nDhaka 1215\r\nBangladesh", rows = "4" })
+        @Html.ValidationMessageFor(model => model.Address)
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AvailableDays)
+        @Html.TextBoxFor(model => model.AvailableDays, new { @class = "form-control"})
+        @Html.ValidationMessageFor(model => model.AvailableDays)
+    </div>
+
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.AntiForgeryToken()
+
+    <button class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -17,6 +17,8 @@ namespace MedInfo_OOSD.Persistence
             modelBuilder.Configurations.Add(new DoctorConfiguration());
             modelBuilder.Configurations.Add(new HospitalConfiguration());
             modelBuilder.Configurations.Add(new CommentConfiguration());
+            modelBuilder.Configurations.Add(new BloodBankConfiguration());
+            
 
             base.OnModelCreating(modelBuilder);
         }
@@ -25,6 +27,7 @@ namespace MedInfo_OOSD.Persistence
         public DbSet<Speciality> Specialities { get; set; }
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<BloodBank> BloodBanks { get; set; }
 
         public static ApplicationDbContext Create()
         {

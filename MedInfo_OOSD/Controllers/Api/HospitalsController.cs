@@ -25,6 +25,16 @@ namespace MedInfo_OOSD.Controllers.Api
         }
 
 
+
+
+
+        // DELETE: /api/Hospitals/id
+        /// <summary>
+        ///     This action takes an id and delete a 
+        ///     Hospital coresponding to that id.
+        /// </summary>
+        /// <param name="id"> Parameter of this action is an guid id. </param>
+        /// <returns>it returns an deleted Hospital object in form of a dto</returns>
         [HttpDelete]
         public IHttpActionResult DeleteHospital(Guid id)
         {
@@ -42,6 +52,15 @@ namespace MedInfo_OOSD.Controllers.Api
         }
 
 
+
+        //
+        // PUT: /api/Hospitals/id
+        /// <summary>
+        ///     This action takes an id and approve a 
+        ///     hospital coresponding to that id.
+        /// </summary>
+        /// <param name="id"> Parameter of this action is an guid id.</param>
+        /// <returns> it returns an updated hospital object in form of a dto </returns>
         [HttpPut]
         public IHttpActionResult ApproveHospital(Guid id)
         {

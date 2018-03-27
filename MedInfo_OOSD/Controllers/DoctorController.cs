@@ -27,6 +27,15 @@ namespace MedInfo_OOSD.Controllers
             base.Dispose(disposing);
         }
 
+
+        //
+        /// <summary>
+        ///     This action serves list of doctors.
+        ///     It serves two differnt view based on
+        ///     users role.  
+        /// </summary>
+        /// <param name="isAdded">it takes a nullable parameter. it dtermines any new recored is added or not</param>
+        /// <returns>it returns two views in form of viewresult</returns>
         [AllowAnonymous]
         public ActionResult ListOfDoctors(bool? isAdded)
         {
@@ -48,6 +57,12 @@ namespace MedInfo_OOSD.Controllers
             return View(view,list);
         }
 
+
+        //
+        /// <summary>
+        ///     This is a action which serves new doctor form.
+        /// </summary>
+        /// <returns> return a view in form of view result</returns>
         public ActionResult NewDoctor()
         {
             var viewModel = new NewDoctorViewModel
@@ -127,13 +142,15 @@ namespace MedInfo_OOSD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddDoctorComment(Guid id, DoctorDetailsViewModel model)
         {
-            var doctor = _context.Doctors.Include(d => d.Speciality).SingleOrDefault(d => d.Id == id);
-
-            Mapper.Map(doctor, model);
 
             if (!ModelState.IsValid)
             {
-                return View("DoctorDetails", model);
+                var doc = _context.Doctors.Include(d => d.Speciality).SingleOrDefault(d => d.Id == id);
+                var viewModel = Mapper.Map<Doctor, DoctorDetailsViewModel>(doc);
+                viewModel.Comments = _context.Comments.Include(c => c.ApplicationUser).Where(c => c.RecordId == id);
+                viewModel.ApiKey = ConfigurationManager.AppSettings["apiKey"];
+
+                return View("DoctorDetails", viewModel);
             }
 
             if (model.Comment == null)

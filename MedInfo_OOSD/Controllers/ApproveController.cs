@@ -22,7 +22,9 @@ namespace MedInfo_OOSD.Controllers
             base.Dispose(disposing);
         }
 
-        // GET: Approve
+        //
+        // GET: /Approve/Index
+        // returns list of unappprovd doctors
         [Authorize(Roles = Roles.SuperAdmin_Moderator)]
         public ActionResult Index()
         {
@@ -37,6 +39,11 @@ namespace MedInfo_OOSD.Controllers
             return View("ApproveList", viewModel);
         }
 
+
+        //
+        // POST: /Approve/ApproveList
+        // returns list of unapproved records 
+        // based on an id
         [HttpPost]
         public ActionResult ApproveList(int id)
         {
@@ -64,6 +71,15 @@ namespace MedInfo_OOSD.Controllers
                         Action = Actions.HospitalDetails,
                         Controller = Models.Constants.Controllers.Hospital,
                         Api = Apies.Hospitals
+                    };
+                    break;
+                case EntityType.Banks:
+                    viewModel = new ApproveListViewModel
+                    {
+                        Entities = _context.BloodBanks.Where(d => !d.IsApproved),
+                        Action = Actions.BankDetails,
+                        Controller = Models.Constants.Controllers.BloodBank,
+                        Api = Apies.Banks
                     };
                     break;
                     default:

@@ -15,6 +15,7 @@ namespace MedInfo_OOSD.Core.Domain
 
         public IList<Comment> Comments { get; set; }
 
+        public IList<BloodBank> BloodBanks { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

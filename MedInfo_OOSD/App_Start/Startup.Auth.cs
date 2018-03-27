@@ -56,9 +56,9 @@ namespace MedInfo_OOSD
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "2038191993101485",
+               appSecret: "49b99171812cc97e02864cadf972d64e");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

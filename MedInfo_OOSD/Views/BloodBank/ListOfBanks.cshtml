@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MedInfo_OOSD.Core.Domain.BloodBank>
+
+@{
+    ViewBag.Title = "List Of Banks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List Of Banks</h2>
+
+@Html.ActionLink("New Bank", "NewBank", "BloodBank", null, new { @class = "btn btn-default", style = "margin-bottom: 10px;" })
+
+
+
+<table class="table table-hover table-bordered" id="banks">
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var bank in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(bank.Name, "Details", "BloodBank", new { id = bank.Id }, new { @class = "btn btn-link" })</td>
+                <td>@bank.Address</td>
+                <td>
+                    @Html.ActionLink("Edit", "EditBank", "BloodBank", new { id = bank.Id }, new { @class = "btn btn-link" }) || &nbsp;
+                    <button class="glyphicon glyphicon-trash js-delete btn btn-danger" data-id="@bank.Id"></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+@section scripts
+{
+    <script>
+
+        $(document).ready(function() {
+
+
+            var table = $("#banks").DataTable();
+
+
+            $("#banks").on("click", ".js-delete", function() {
+
+                var button = $(this);
+
+                bootbox.confirm("Are Sure To Delete This", function (result) {
+
+                    if (result) {
+
+                        $.ajax({
+
+                            url: "/api/banks/" + button.attr("data-id"),
+                            method: "DELETE",
+                            success: function () {
+
+                                table.row(button.parents("tr")).remove().draw();
+                                toastr.success("Record Deleted");
+                            }
+                        });
+                    }
+
+                });
+
+
+            });
+
+        });
+    </script>
+}

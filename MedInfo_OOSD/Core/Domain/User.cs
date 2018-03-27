@@ -1,4 +1,4 @@
-﻿namespace MedInfo_OOSD.Core.Chat
+﻿namespace MedInfo_OOSD.Core.Domain
 {
     public class User
     {
