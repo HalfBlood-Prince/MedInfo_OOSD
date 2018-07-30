@@ -1,15 +1,15 @@
-﻿using System;
-using System.Configuration;
-using System.Net.Mail;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using MedInfo_OOSD.Core.Domain;
+﻿using MedInfo_OOSD.Core.Domain;
+using MedInfo_OOSD.Persistence;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using MedInfo_OOSD.Persistence;
+using System;
+using System.Configuration;
+using System.Net.Mail;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace MedInfo_OOSD
 {
@@ -131,7 +131,7 @@ namespace MedInfo_OOSD
             UserName = ConfigurationManager.AppSettings["GmailUserName"];
             EnableSsl = bool.Parse(ConfigurationManager.AppSettings["GmailSsl"]);
             UseDefaultCredentials = false;
-            Credentials = new System.Net.NetworkCredential(this.UserName, ConfigurationManager.AppSettings["GmailPassword"]);
+            Credentials = new System.Net.NetworkCredential(UserName, ConfigurationManager.AppSettings["GmailPassword"]);
         }
 
     }

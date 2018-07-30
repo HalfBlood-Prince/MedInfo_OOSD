@@ -1,17 +1,15 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Management;
-using System.Web.Mvc;
-using System.Web.UI.WebControls.Expressions;
-using MedInfo_OOSD.Core.Domain;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
+﻿using MedInfo_OOSD.Core.Domain;
 using MedInfo_OOSD.Models;
 using MedInfo_OOSD.Models.Constants;
 using MedInfo_OOSD.Persistence;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace MedInfo_OOSD.Controllers
 {
